@@ -50,7 +50,7 @@
                     <div class="text-2xl">
                         <i class="fa-regular fa-user"></i>
                     </div>
-                    <div class="text-xs leading-3">Account</div>
+                    <div class="text-xs leading-3"><button id="resetLS">Reset Local Storage</button></div>
                 </a>
             </div>
         </div>
@@ -168,6 +168,7 @@
 {% endblock %}
 
 {% block scripts %}
+    <script src="../public/js/localStorageHandler.js"></script>
     <script src="../public/js/localStorageFiller.js"></script>
     <script src="../public/js/catDataFetch.js"></script>
     <script src="../public/js/artDataFetch.js"></script>
