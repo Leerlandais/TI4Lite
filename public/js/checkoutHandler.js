@@ -25,7 +25,7 @@ let i;
 
         const remItem = document.createElement("p");
         remItem.classList.add("text-gray-600", "flex", "align-end");
-        remItem.innerHTML = `<button onclick="removeFromBasket(${i})"><img src="../images/icons/removeItem.svg" alt="X" class="h-6 w-6"></button>`
+        remItem.innerHTML = `<button onclick="removeFromBasket(${i})"><img src="images/icons/removeItem.svg" alt="X" class="h-6 w-6"></button>`
         divExt.appendChild(remItem);
 
         const pricePara = document.createElement("p");
