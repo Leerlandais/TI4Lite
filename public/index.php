@@ -15,6 +15,7 @@ require_once PROJECT_DIRECTORY.'/vendor/autoload.php';
 $loader = new FilesystemLoader(PROJECT_DIRECTORY.'/view/');
 
 // Dev version
+
 $twig = new Environment($loader, [
   'debug' => true,
 ]);
