@@ -43,6 +43,12 @@ function removeFromBasket(data) {
     return true;
 }
 
+function deleteFromBasket(data) {
+    showTests ? console.warn("RUNNING DELETE FROM BASKET FUNCTION") : null;
+    const delResponse = confirm("Are you sure you want to delete this item?");
+    showTests ? console.log("Remove item ? ", delResponse) : null;
+    return true;
+}
 // et ajoute un
 function addToBasket(data) {
     showTests ? console.warn("RUNNING ADD TO BASKET FUNCTION") : null;

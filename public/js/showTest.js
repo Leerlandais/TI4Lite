@@ -2,7 +2,6 @@ const changeTestSetting = document.getElementById("changeTestSetting");
 const currentTestSetting = document.getElementById("currentTestSetting");
 
 let showTests = JSON.parse(localStorage.getItem("TESTS"));
-console.log(showTests);
 if (showTests === undefined || showTests === null) {
     showTests = confirm("Run with tests?");
     localStorage.setItem("TESTS", JSON.stringify(showTests));

@@ -35,18 +35,29 @@ function createBasketList (datas) {
     let i;
     datas.forEach((data) => {
         const divExt = document.createElement("div");
-        divExt.classList.add("flex", "justify-between");
+        divExt.classList.add("flex", "justify-between", "items-center");
         const divTitle = document.createElement("div");
         divTitle.innerHTML = `<div>
                         <h5 class="text-gray-800 font-medium w-14">${data.item}</h5>
                     </div>`;
         divExt.appendChild(divTitle);
 
+        const choiceBtns = document.createElement("div");
+        choiceBtns.classList.add("flex", "justify-around", "items-center", "space-x-4");
+        const incItem = document.createElement("p");
+        incItem.classList.add("text-gray-600");
+        incItem.innerHTML = `<button onclick="addToBasket(${i})"><img src="images/icons/arrow-down.svg" alt="\/" class="h-6 w-6"></button>`
+        choiceBtns.appendChild(incItem);
         const remItem = document.createElement("p");
-        remItem.classList.add("text-gray-600", "flex", "align-end");
-        remItem.innerHTML = `<button onclick="removeFromBasket(${i})"><img src="images/icons/removeItem.svg" alt="X" class="h-6 w-6"></button>`
-        divExt.appendChild(remItem);
+        remItem.classList.add("text-gray-600");
+        remItem.innerHTML = `<button onclick="deleteFromBasket(${i})"><img src="images/icons/removeItem.svg" alt="X" class="h-6 w-6"></button>`
+        choiceBtns.appendChild(remItem);
+        const decItem = document.createElement("p");
+        decItem.classList.add("text-gray-600");
+        decItem.innerHTML = `<button onclick="addToBasket(${i})"><img src="images/icons/arrow-up.svg" alt="/\" class="h-6 w-6"></button>`
+        choiceBtns.appendChild(decItem);
 
+        divExt.appendChild(choiceBtns);
         const pricePara = document.createElement("p");
         pricePara.classList.add("text-gray-800", "font-medium");
         pricePara.textContent = "€" + data.price;
