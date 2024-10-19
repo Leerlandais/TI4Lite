@@ -45,10 +45,14 @@ function removeFromBasket(data) {
 
 function deleteFromBasket(data) {
         showTests ? console.warn("RUNNING DELETE FROM BASKET FUNCTION") : null;
-    console.log(data);
+        showTests ? console.log(currentBasket) : null;
+        showTests ? console.log(data) : null;
+
     const delResponse = confirm("Are you sure you want to delete this item?");
         showTests ? console.log("Remove item ? ", delResponse) : null;
-        console.log(data);
+        currentBasket.splice(data, 1);
+        console.log(currentBasket);
+    localStorage.setItem('BASKET', JSON.stringify(currentBasket));
     return true;
     /*
         currentBasket.splice(data, 1);

@@ -1,22 +1,26 @@
 
 const   currentBasket = JSON.parse(localStorage.getItem('BASKET')),
+    checkoutGrid = document.getElementById("checkout_grid");
+function createUniqueBasket(datas){
+    const   currentBasket = JSON.parse(localStorage.getItem('BASKET')),
         checkoutGrid = document.getElementById("checkout_grid");
 
-showTests ? console.log("Current Basket (array expected) : ",currentBasket) : null;
-const occurrences = currentBasket.reduce((item, currentItem) => {
-    const key = JSON.stringify(currentItem);
+    showTests ? console.log("Current Basket (array expected) : ",currentBasket) : null;
+    const occurrences = currentBasket.reduce((item, currentItem) => {
+        const key = JSON.stringify(currentItem);
         item[key] = (item[key] || 0) + 1;
-    return item;
-}, {});
+        return item;
+    }, {});
 
-const uniqueBasket = Object.keys(occurrences).map(key => {
-    const item = JSON.parse(key);
-    return {
-        ...item,
-        occurs: occurrences[key]
-    };
-});
-showTests ? console.log("Recreated basket using occurrences instead of repetition (identical or reduced sized array expected) : ", uniqueBasket): null;
+    const uniqueBasket = Object.keys(occurrences).map(key => {
+        const item = JSON.parse(key);
+        return {
+            ...item,
+            occurs: occurrences[key]
+        };
+    });
+    showTests ? console.log("Recreated basket using occurrences instead of repetition (identical or reduced sized array expected) : ", uniqueBasket): null;
+}
 
 function removeBasketList() {
     showTests ? console.warn("Removing existing basket elements") : null;
@@ -38,7 +42,7 @@ function createBasketList (datas) {
         divExt.classList.add("flex", "justify-between", "items-center");
         const divTitle = document.createElement("div");
         divTitle.innerHTML = `<div>
-                        <h5 class="text-gray-800 font-medium w-14">${data.item}</h5>
+                        <h5 class="text-gray-800 font-medium w-14">${data.item} x ${data.item} </h5>
                     </div>`;
         divExt.appendChild(divTitle);
 
@@ -96,4 +100,4 @@ function createTotalPrice(data) {
 }
 
 
-createBasketList(uniqueBasket);
+createBasketList(currentBasket);
