@@ -3,6 +3,7 @@ resetLS.addEventListener("click", createNewStorage)
 
 // création du LS si pas déjà existant
 function createStorage (){
+    showTests ? console.warn("RUNNING CREATE STORAGE FUNCTION") : null;
     if (!localStorage.getItem("ITEM1")) {
         for(let i = 1; i <= 12; i++) {
             const item = {id: i, sold: Math.floor(Math.random() * 40) + 1};
@@ -21,6 +22,7 @@ function createNewStorage() {
 
 // utiliser chaque fois qu'on a besoin du basket
 function getBasket() {
+    showTests ? console.warn("RUNNING GETBASKET FUNCTION") : null;
     if (localStorage.getItem("BASKET") && localStorage.getItem("BASKET").length) {
         return localStorage.getItem("BASKET");
         }
@@ -29,16 +31,19 @@ function getBasket() {
 
 // pour vider basket après l'achat
 function removeBasket() {
+    showTests ? console.warn("RUNNING REMOVE BASKET FUNCTION") : null;
     localStorage.removeItem('BASKET');
 }
 
 // enleve un article du panier
 function removeFromBasket(data) {
+    showTests ? console.warn("RUNNING REMOVE FROM BASKET FUNCTION") : null;
     return true;
 }
 
 // et ajoute un
-function addToBasket(data, showTests=false) {
+function addToBasket(data) {
+    showTests ? console.warn("RUNNING ADD TO BASKET FUNCTION") : null;
    showTests ? console.log("Received this (object expected) : ",data) : null;
     let currentBasket = JSON.parse(localStorage.getItem("BASKET")) || [];
     currentBasket.push(data);
@@ -52,7 +57,7 @@ function addToBasket(data, showTests=false) {
     showTests ? console.log(`${data.item} in stock (int expected) : `, data.left) : null
 
     adjustCheckoutAmount();
-    adjustRemainingAmount(data.id, true);
+    adjustRemainingAmount(data.id);
 }
 
 

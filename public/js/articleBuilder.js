@@ -1,11 +1,10 @@
 const articleGrid = document.getElementById("article_grid");
 const recommendedGrid = document.getElementById("recommended_grid");
 
-function postArticlesByGrid(datas, whichGrid, showTests=false){
-
+function postArticlesByGrid(datas, whichGrid){
+    showTests ? console.warn("RUNNING POST ARTICLES BY GRID : ", whichGrid) : null
      showTests ? console.log("untouched data received (json expected) :"+JSON.stringify(datas)) :  null;
 
-    showTests ? console.log(`BEGINNING CREATION OF :`, whichGrid ) : null
     if(whichGrid === "articleGrid") {
         whichGrid = articleGrid
     }else if (whichGrid === "recommendedGrid") {
@@ -95,7 +94,8 @@ function postArticlesByGrid(datas, whichGrid, showTests=false){
     adjustCheckoutAmount();
 }
 
-function adjustCheckoutAmount(showTests=false) {
+function adjustCheckoutAmount() {
+    showTests ? console.log("Initialising checkout amount") : null;
     const basketSize = document.getElementById("basketSize");
     // affiche montants d'articles dans le panier
     if (getBasket()) {
@@ -108,7 +108,8 @@ function adjustCheckoutAmount(showTests=false) {
     }
 }
 
-function adjustRemainingAmount(id, showTests=false) {
+function adjustRemainingAmount(id) {
+    showTests ? console.log("Adjusting checkout amount"): null;
    const remainingDisplay = document.getElementById("amt" + id);
    showTests ? console.log("Display to be changed (object expected) : ", remainingDisplay) : null;
    let remainingAmount = parseInt(remainingDisplay.textContent);

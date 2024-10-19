@@ -43,7 +43,7 @@
                     <div class="text-2xl">
                         <i class="fa-solid fa-bag-shopping"></i>
                     </div>
-                    <div class="text-xs leading-3">Cart</div>
+                    <div class="text-xs leading-3"><button id="changeTestSetting">Adjust Tests</button> : <span id="currentTestSetting"></span></div>
 
                 </a>
                 <a href="#" class="text-center text-gray-700 hover:text-primary transition relative">
@@ -168,6 +168,7 @@
 {% endblock %}
 
 {% block scripts %}
+    <script src="../public/js/showTest.js"></script>
     <script src="../public/js/localStorageHandler.js"></script>
     <script src="../public/js/jsonHandler.js"></script>
     <script src="../public/js/categoryBuilder.js"></script>

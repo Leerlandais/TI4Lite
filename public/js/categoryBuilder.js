@@ -1,10 +1,14 @@
 const categoryGrid = document.getElementById("category_grid");
 function postCategories(datas) {
+    showTests ? console.warn("RUNNING POST CATEGORIES FUNCTION") : null;
 // d'abord, verification que catGrid est vide
+    let i = 1;
     while (categoryGrid.firstChild) {
+        showTests ? console.log("removing category grid child : "+i) : null;
         categoryGrid.removeChild(categoryGrid.firstChild);
+        i++;
     }
-
+    showTests ? console.log("Category Grid cleared") : null;
     datas.forEach((data) => {
     const divExt = document.createElement("div");
         divExt.classList.add("relative",
@@ -36,6 +40,7 @@ function postCategories(datas) {
         divExt.appendChild(img);
         divExt.appendChild(divBtn);
 
+        showTests ? console.log("Completed Div (object expected) : ", divExt) : null;
     categoryGrid.appendChild(divExt);
     });
 adjustOpacity();

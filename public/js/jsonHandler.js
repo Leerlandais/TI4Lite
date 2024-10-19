@@ -1,6 +1,7 @@
 
 // recuperation des categories
 function getCategoryData(){
+    showTests ? console.warn("FETCHING DATA") : null;
     fetch("js/category-datas.json")
         .then(function(response) {
             return response.json();
@@ -35,6 +36,7 @@ function createViewUsingCategory(datas) {
 
 
 function getArticleDatas(whichGrid) {
+    showTests ? console.warn("FETCHING ARTICLE DATA") : null;
     fetch("js/article-datas.json")
         .then(function(response) {
             return response.json();
@@ -46,6 +48,7 @@ function getArticleDatas(whichGrid) {
 }
 
 function prepareArticleDatas(datas, whichGrid) {
+    showTests ? console.warn("PREPARING ARTICLE DATA FOR INSERTION") : null;
     const artData = datas.slice((datas.length -4),datas.length);
     const restData = datas.filter(item => !artData.includes(item));
     const shuffledData = restData.sort((a, b) => 0.5 - Math.random());
