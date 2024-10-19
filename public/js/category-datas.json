@@ -2,31 +2,37 @@
     {
         "id": 1,
         "cat": "Bedroom",
-        "img": "images/category/category-1.jpg"
+        "img": "images/category/category-1.jpg",
+        "disabled": false
     },
     {
         "id": 2,
         "cat": "Mattress",
-        "img": "images/category/category-2.jpg"
+        "img": "images/category/category-2.jpg",
+        "disabled": true
     },
     {
         "id": 3,
         "cat": "Outdoor",
-        "img": "images/category/category-3.jpg"
+        "img": "images/category/category-3.jpg",
+        "disabled": false
     },
     {
         "id": 4,
         "cat": "Sofa",
-        "img": "images/category/category-4.jpg"
+        "img": "images/category/category-4.jpg",
+        "disabled": true
     },
     {
         "id": 5,
-        "cat": "Living Room",
-        "img": "images/category/category-5.jpg"
+        "cat": "Living",
+        "img": "images/category/category-5.jpg",
+        "disabled": false
     },
     {
         "id": 6,
         "cat": "Kitchen",
-        "img": "images/category/category-6.jpg"
+        "img": "images/category/category-6.jpg",
+        "disabled": false
     }
 ]
