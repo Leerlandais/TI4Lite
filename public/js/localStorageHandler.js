@@ -13,6 +13,12 @@ function createStorage (){
 // lancement direct
 createStorage();
 
+// au cas où on a besoin de recréer le LS (epuisement du stock)
+function createNewStorage() {
+    localStorage.clear();
+    location.reload()
+}
+
 // utiliser chaque fois qu'on a besoin du basket
 function getBasket() {
     return localStorage.getItem("BASKET");
@@ -23,16 +29,12 @@ function removeBasket() {
     localStorage.removeItem('BASKET');
 }
 
-// au cas où on a besoin de recréer le LS (epuisement du stock)
-function createNewStorage() {
-    localStorage.clear();
-    location.reload()
-}
-
+// enleve un article du panier
 function removeFromBasket(data) {
     return true;
 }
 
+// et ajoute un
 function addToBasket(data) {
     return true;
 }

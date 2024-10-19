@@ -1,16 +1,4 @@
 const category_grid = document.getElementById("category_grid");
-function getCategoryDatas() {
-    fetch("js/category-datas.json")
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(datas) {
-            postCategories(datas);
-        })
-        .catch(error => console.error('Error fetching datas:', error));
-}
-
-
 function postCategories(datas) {
     datas.forEach((data) => {
     const divExt = document.createElement("div");
@@ -50,7 +38,7 @@ function postCategories(datas) {
 
 }
 
-getCategoryDatas();
+getCategoryData();
 
 /*
 <div class="relative rounded-sm overflow-hidden group">

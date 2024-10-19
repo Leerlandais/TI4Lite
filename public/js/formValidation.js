@@ -1,3 +1,4 @@
+console.log("formValidation");
 const checkoutForm = document.getElementById("checkoutForm");
 const formElements = checkoutForm.querySelectorAll("input");
 const submitButton = document.getElementById("submitButton");

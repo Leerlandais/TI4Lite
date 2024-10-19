@@ -11,12 +11,12 @@
     },
     {
         "id": 2,
-        "cat": "Living Room",
-        "item": "Couple Sofa",
-        "price": "1100",
-        "priceRed": "699",
-        "img": "images/products/product2.jpg",
-        "href": "product2.html",
+        "cat": "Kitchen",
+        "item": "Dining Table",
+        "price": "600",
+        "priceRed": "499",
+        "img": "images/products/product5.jpg",
+        "href": "product5.html",
         "amount": 50
     },
     {
@@ -41,12 +41,12 @@
     },
     {
         "id": 5,
-        "cat": "Kitchen",
-        "item": "Dining Table",
-        "price": "600",
-        "priceRed": "499",
-        "img": "images/products/product5.jpg",
-        "href": "product5.html",
+        "cat": "Living Room",
+        "item": "Couple Sofa",
+        "price": "1100",
+        "priceRed": "699",
+        "img": "images/products/product2.jpg",
+        "href": "product2.html",
         "amount": 50
     },
     {
