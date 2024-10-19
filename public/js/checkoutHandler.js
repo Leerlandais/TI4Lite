@@ -1,6 +1,22 @@
 
 const   currentBasket = JSON.parse(localStorage.getItem('BASKET')),
-    checkoutGrid = document.getElementById("checkout_grid");
+        checkoutGrid = document.getElementById("checkout_grid");
+
+showTests ? console.log("Current Basket (array expected) : ",currentBasket) : null;
+const occurrences = currentBasket.reduce((item, currentItem) => {
+    const key = JSON.stringify(currentItem);
+        item[key] = (item[key] || 0) + 1;
+    return item;
+}, {});
+
+const uniqueBasket = Object.keys(occurrences).map(key => {
+    const item = JSON.parse(key);
+    return {
+        ...item,
+        occurs: occurrences[key]
+    };
+});
+showTests ? console.log("Recreated basket using occurrences instead of repetition (identical or reduced sized array expected) : ", uniqueBasket): null;
 
 function removeBasketList() {
     showTests ? console.warn("Removing existing basket elements") : null;
