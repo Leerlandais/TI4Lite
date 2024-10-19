@@ -1,8 +1,7 @@
 const changeTestSetting = document.getElementById("changeTestSetting");
 const currentTestSetting = document.getElementById("currentTestSetting");
 
-let showTests = false;
-
+let showTests = true;
 /*
 if (showTests === undefined || showTests === null) {
     showTests = confirm("Run with tests?");
