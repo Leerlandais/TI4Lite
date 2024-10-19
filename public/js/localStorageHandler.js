@@ -38,8 +38,21 @@ function removeFromBasket(data) {
 }
 
 // et ajoute un
-function addToBasket(data) {
-    return true;
+function addToBasket(data, showTests=false) {
+   showTests ? console.log("Received this (object expected) : ",data) : null;
+    let currentBasket = JSON.parse(localStorage.getItem("BASKET")) || [];
+    currentBasket.push(data);
+    localStorage.setItem("BASKET", JSON.stringify(currentBasket));
+    showTests ? console.log("Current Basket (array expected) : ",currentBasket) : null;
+
+    let item = "ITEM"+data.id;
+    showTests ? console.log("Item created as (string expected) : ",item) : null;
+    let itemData = JSON.parse(localStorage.getItem(item));
+    data.left = data.amount - parseInt(itemData.sold);
+    showTests ? console.log(`${data.item} in stock (int expected) : `, data.left) : null
+
+    adjustCheckoutAmount();
+    adjustRemainingAmount(data.id, true);
 }
 
 

@@ -52,10 +52,10 @@ function prepareArticleDatas(datas, whichGrid) {
     const recoData = shuffledData.slice(0,4);
     switch(whichGrid) {
         case "articleGrid":
-            postArticlesByGrid(artData, whichGrid, true);
+            postArticlesByGrid(artData, whichGrid);
             break;
         case "recommendedGrid":
-            postArticlesByGrid(recoData, whichGrid, true);
+            postArticlesByGrid(recoData, whichGrid);
             break;
         case "categorySelection":
 

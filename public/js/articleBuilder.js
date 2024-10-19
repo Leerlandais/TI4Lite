@@ -3,13 +3,14 @@ const recommendedGrid = document.getElementById("recommended_grid");
 
 function postArticlesByGrid(datas, whichGrid, showTests=false){
 
-    if (showTests) {
-        console.log("untouched data received (json expected) :"+JSON.stringify(datas));
-        console.log("whichGrid (string expected) : "+whichGrid);
-    }
+     showTests ? console.log("untouched data received (json expected) :"+JSON.stringify(datas)) :  null;
 
-    showTests ? console.log("Assign whichGrid to necessary element") : null
-    whichGrid === "articleGrid" ? whichGrid = articleGrid : whichGrid = recommendedGrid;
+    showTests ? console.log(`BEGINNING CREATION OF :`, whichGrid ) : null
+    if(whichGrid === "articleGrid") {
+        whichGrid = articleGrid
+    }else if (whichGrid === "recommendedGrid") {
+        whichGrid = recommendedGrid
+    }
     showTests ? console.log("whichGrid (div expected) : ",whichGrid) : null;
     datas.forEach((data) => {
         // Objet pour contenir nos articles
@@ -28,9 +29,8 @@ function postArticlesByGrid(datas, whichGrid, showTests=false){
 
         // Calculation des articles restant
         const soldAmt = JSON.parse(localStorage.getItem('ITEM'+data["id"])).sold;
-        console.log(soldAmt);
         const newAmt = parseInt(data["amount"]) - parseInt(soldAmt);
-        console.log(`Amount of ${data.item} in stock (int 0-49 expected) :`, newAmt)
+        showTests ? console.log(`Amount of ${data.item} in stock (int 0-49 expected) :`, newAmt) : null;
 
         // Création des elements
             // Div parent pour contenir les autres
@@ -83,7 +83,7 @@ function postArticlesByGrid(datas, whichGrid, showTests=false){
                                        bg-primary border border-primary rounded-b 
                                        hover:bg-transparent hover:text-primary transition"
                                 id="ITEM${data['id']}"
-                                onclick='addToBasket(${oneItemString})'>
+                                onclick='addToBasket(${oneItemString}, true)'>
                                 Add to cart
                                 </button>`
             divLink.appendChild(divBtn);
@@ -92,14 +92,35 @@ function postArticlesByGrid(datas, whichGrid, showTests=false){
         showTests ? console.log("Div Element expected : ",divExt) : null;
         whichGrid.appendChild(divExt);
     });
-const basketSize = document.getElementById("basketSize");
-// affiche montants d'articles dans le panier
-if (getBasket()) {
-    let currentBasket = JSON.parse(getBasket());
-   showTests ? console.log(currentBasket): null;
-    basketSize.textContent = currentBasket.length;
-}else {
-    basketSize.textContent = "0";
-   showTests ? console.log("Basket is currently empty"): null;
+    adjustCheckoutAmount();
 }
+
+function adjustCheckoutAmount(showTests=false) {
+    const basketSize = document.getElementById("basketSize");
+    // affiche montants d'articles dans le panier
+    if (getBasket()) {
+        let currentBasket = JSON.parse(getBasket());
+        showTests ? console.log("Current Basket (array expected) : ",currentBasket): null;
+        basketSize.textContent = currentBasket.length;
+    }else {
+        basketSize.textContent = "0";
+        showTests ? console.log("Basket is currently empty"): null;
+    }
+}
+
+function adjustRemainingAmount(id, showTests=false) {
+   const remainingDisplay = document.getElementById("amt" + id);
+   showTests ? console.log("Display to be changed (object expected) : ", remainingDisplay) : null;
+   let remainingAmount = parseInt(remainingDisplay.textContent);
+   remainingAmount--;
+   showTests ? console.log("Reducing remaining amount. New amount remaining = ", remainingAmount) : null;
+   remainingDisplay.textContent = remainingAmount;
+   if (remainingAmount < 1) {
+       const stopListener = document.getElementById("ITEM" + id);
+       stopListener.disabled = true;
+       stopListener.textContent = "Sold Out";
+       stopListener.style.opacity = "0.5";
+       stopListener.classList.remove("hover:bg-transparent");
+       stopListener.classList.remove("hover:text-primary");
+   }
 }
