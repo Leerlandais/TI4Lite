@@ -11,7 +11,23 @@ function getCategoryData(){
         .catch(error => console.error('Error fetching datas:', error));
 }
 
-function getByCategory(cat=""){
-    const catStr= cat;
-alert("catSearch : "+catStr);
+// filtrage des articles par category
+function getByCategory(cat) {
+    console.log(cat);
+    fetch("js/article-datas.json")
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(allCats) {
+            const oneCat = allCats.filter(product => product.cat === cat);
+            createViewUsingCategory(oneCat);
+        })
+        .catch(error => console.error('Error fetching data:', error));
+
+}
+
+function createViewUsingCategory(datas) {
+    datas.forEach(function(data) {
+    console.log("THIS : "+JSON.stringify(data))
+    });
 }
