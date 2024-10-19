@@ -21,7 +21,10 @@ function createNewStorage() {
 
 // utiliser chaque fois qu'on a besoin du basket
 function getBasket() {
-    return localStorage.getItem("BASKET");
+    if (localStorage.getItem("BASKET") && localStorage.getItem("BASKET").length) {
+        return localStorage.getItem("BASKET");
+        }
+    return null;
 }
 
 // pour vider basket après l'achat
