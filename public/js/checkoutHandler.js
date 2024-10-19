@@ -22,7 +22,7 @@ function removeBasketList() {
     showTests ? console.warn("Removing existing basket elements") : null;
     let i = 1;
     while (checkoutGrid.firstChild) {
-        console.log("removing element : "+i);
+        showTests ? console.log("removing element : "+i) : null;
         checkoutGrid.removeChild(checkoutGrid.firstChild);
         i++;
     }
@@ -31,8 +31,8 @@ removeBasketList();
 
 function createBasketList (datas) {
     showTests ? console.warn("Creating Basket") : null;
+    showTests ? console.log('Received datas (array expected) : ',datas): null;
 
-    let i;
     datas.forEach((data) => {
         const divExt = document.createElement("div");
         divExt.classList.add("flex", "justify-between", "items-center");
@@ -46,15 +46,15 @@ function createBasketList (datas) {
         choiceBtns.classList.add("flex", "justify-around", "items-center", "space-x-4");
         const incItem = document.createElement("p");
         incItem.classList.add("text-gray-600");
-        incItem.innerHTML = `<button onclick="addToBasket(${i})"><img src="images/icons/arrow-down.svg" alt="\/" class="h-6 w-6"></button>`
+        incItem.innerHTML = `<button onclick="removeFromBasket(${data.id})"><img src="images/icons/arrow-down.svg" alt="\/" class="h-6 w-6"></button>`
         choiceBtns.appendChild(incItem);
         const remItem = document.createElement("p");
         remItem.classList.add("text-gray-600");
-        remItem.innerHTML = `<button onclick="deleteFromBasket(${i})"><img src="images/icons/removeItem.svg" alt="X" class="h-6 w-6"></button>`
+        remItem.innerHTML = `<button onclick="deleteFromBasket(${data.id})"><img src="images/icons/removeItem.svg" alt="X" class="h-6 w-6"></button>`
         choiceBtns.appendChild(remItem);
         const decItem = document.createElement("p");
         decItem.classList.add("text-gray-600");
-        decItem.innerHTML = `<button onclick="addToBasket(${i})"><img src="images/icons/arrow-up.svg" alt="/\" class="h-6 w-6"></button>`
+        decItem.innerHTML = `<button onclick="addToBasket(${data.id})"><img src="images/icons/arrow-up.svg" alt="/\" class="h-6 w-6"></button>`
         choiceBtns.appendChild(decItem);
 
         divExt.appendChild(choiceBtns);
@@ -64,7 +64,6 @@ function createBasketList (datas) {
         divExt.appendChild(pricePara);
         showTests ? console.log("Created Div (object expected) : ", divExt) : null;
         checkoutGrid.appendChild(divExt)
-        i++;
     createTotalPrice(data);
     });
 }
