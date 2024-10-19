@@ -9,6 +9,7 @@ function createStorage (){
             const item = {id: i, sold: Math.floor(Math.random() * 40) + 1};
             localStorage.setItem('ITEM'+i, JSON.stringify(item));
         }
+        localStorage.setItem("TESTS", null);
     }
 }
 // lancement direct
@@ -17,6 +18,7 @@ createStorage();
 // au cas où on a besoin de recréer le LS (epuisement du stock)
 function createNewStorage() {
     localStorage.clear();
+    createStorage();
     location.reload()
 }
 

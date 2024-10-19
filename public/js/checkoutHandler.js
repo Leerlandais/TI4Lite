@@ -86,4 +86,4 @@ function createTotalPrice(data) {
 }
 
 
-createBasketList(currentBasket);
+createBasketList(uniqueBasket);
