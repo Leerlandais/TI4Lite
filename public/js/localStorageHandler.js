@@ -54,23 +54,27 @@ function removeFromBasket(data) {
     showTests ? console.log('Item removed (smaller array expected) : ',currentBasket) : null;
     localStorage.setItem('BASKET', JSON.stringify(currentBasket));
     removeBasketList();
-    createUniqueBasket(currentBasket)
+    createUniqueBasket();
 }
 
 // enleve completement un article du panier
-function deleteFromBasket(datas) {
+function deleteFromBasket(id) {
+    const currentBasket = getBasket();
         showTests ? console.warn("RUNNING DELETE FROM BASKET FUNCTION") : null;
         showTests ? console.log(currentBasket) : null;
-        showTests ? console.log(datas) : null;
+        showTests ? console.log(id) : null;
 
     const delResponse = confirm("Are you sure you want to delete this item?");
         showTests ? console.log("Remove item ? ", delResponse) : null;
-        let newBasket = currentBasket.filter(data => data.id !== datas);
-    console.log("newBasket : ", newBasket);
+        if(delResponse === null) {
+            return;
+        }
+        let newBasket = currentBasket.filter(data => data.id !== id);
+        showTests ? console.log("newBasket : ", newBasket) : null;
+        localStorage.removeItem("BASKET");
         localStorage.setItem('BASKET', JSON.stringify(newBasket));
-        alert("check basket");
         removeBasketList();
-        createUniqueBasket(newBasket);
+
 
 }
 // et ajoute un

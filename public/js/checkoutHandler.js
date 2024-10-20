@@ -1,6 +1,8 @@
 
 let currentBasket = getBasket(),
     tableGrid = document.getElementById("table_grid");
+
+console.log("THIS CUNT : ",currentBasket);
 function createUniqueBasket(datas){
     const   currentBasket = datas;
 
@@ -30,6 +32,8 @@ function removeBasketList() {
         tableGrid.removeChild(tableGrid.firstChild);
         i++;
     }
+    let datas = getBasket();
+    createUniqueBasket(datas);
 }
 removeBasketList();
 
@@ -47,7 +51,7 @@ function createBasketList (datas) {
     datas.forEach((data) => {
         finalPrice += parseInt(data.price);
         let fullPrice = parseInt(data.price) * parseInt(data.occurs);
-        console.log("price : ", fullPrice);
+        showTests ? console.log("price : ", fullPrice) : null;
         const tr = document.createElement("tr");
         tr.classList.add("border-b", "border-blue-gray-200", "text-center");
         tr.innerHTML = `<td class="py-3 px-4 text-center">${data.item}</td>
@@ -70,8 +74,8 @@ function createBasketList (datas) {
 }
 
 
-let finalPrice = 0;
 function createTotalPrice(datas) {
+let finalPrice = 0;
     showTests ? console.warn("Calculating total price and creating Table") : null;
     datas.forEach((data) => {
         finalPrice += parseInt(data.price);
@@ -93,9 +97,6 @@ function createTotalPrice(datas) {
     showTests ? console.warn("Price Table Creation Complete") : null;
 }
 
-if (currentBasket) {
-createUniqueBasket(currentBasket);
-}else {
-    createBasketList(null)
-}
+// createUniqueBasket(currentBasket);
+
 
