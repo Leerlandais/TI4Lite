@@ -99,7 +99,7 @@ function adjustCheckoutAmount() {
     const basketSize = document.getElementById("basketSize");
     // affiche montants d'articles dans le panier
     if (getBasket()) {
-        let currentBasket = JSON.parse(getBasket());
+        let currentBasket = getBasket();
         showTests ? console.log("Current Basket (array expected) : ",currentBasket): null;
         basketSize.textContent = currentBasket.length;
     }else {

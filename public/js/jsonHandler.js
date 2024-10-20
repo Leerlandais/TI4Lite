@@ -49,6 +49,7 @@ function getArticleDatas(whichGrid) {
 
 function prepareArticleDatas(datas, whichGrid) {
     showTests ? console.warn("PREPARING ARTICLE DATA FOR INSERTION") : null;
+
     const artData = datas.slice((datas.length -4),datas.length);
     const restData = datas.filter(item => !artData.includes(item));
     const shuffledData = restData.sort((a, b) => 0.5 - Math.random());

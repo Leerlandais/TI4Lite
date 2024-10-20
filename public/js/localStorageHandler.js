@@ -26,7 +26,7 @@ function createNewStorage() {
 function getBasket() {
         showTests ? console.warn("RUNNING GETBASKET FUNCTION") : null;
     if (localStorage.getItem("BASKET") && localStorage.getItem("BASKET").length) {
-        return localStorage.getItem("BASKET");
+        return JSON.parse(localStorage.getItem("BASKET"));
         }
     return null;
 }
@@ -46,28 +46,32 @@ function removeBasket(datas) {
 
 // enleve un article du panier
 function removeFromBasket(data) {
-        showTests ? console.warn("RUNNING REMOVE FROM BASKET FUNCTION") : null;
-    return true;
+    showTests ? console.warn("RUNNING REMOVE FROM BASKET FUNCTION") : null;
+    showTests ? console.log(currentBasket) : null;
+    showTests ? console.log(data) : null;
+
+    currentBasket.splice(data, 1);
+    showTests ? console.log('Item removed (smaller array expected) : ',currentBasket) : null;
+    localStorage.setItem('BASKET', JSON.stringify(currentBasket));
+    removeBasketList();
+    createUniqueBasket(currentBasket)
 }
 
-function deleteFromBasket(data) {
+// enleve completement un article du panier
+function deleteFromBasket(datas) {
         showTests ? console.warn("RUNNING DELETE FROM BASKET FUNCTION") : null;
         showTests ? console.log(currentBasket) : null;
-        showTests ? console.log(data) : null;
+        showTests ? console.log(datas) : null;
 
     const delResponse = confirm("Are you sure you want to delete this item?");
         showTests ? console.log("Remove item ? ", delResponse) : null;
-        currentBasket.splice(data, 1);
-        console.log(currentBasket);
-    localStorage.setItem('BASKET', JSON.stringify(currentBasket));
-    return true;
-    /*
-        currentBasket.splice(data, 1);
-    localStorage.setItem('BASKET', JSON.stringify(currentBasket));
-    console.log(currentBasket);
-    removeBasketList();
-    createBasketLink(currentBasket);
-     */
+        let newBasket = currentBasket.filter(data => data.id !== datas);
+    console.log("newBasket : ", newBasket);
+        localStorage.setItem('BASKET', JSON.stringify(newBasket));
+        alert("check basket");
+        removeBasketList();
+        createUniqueBasket(newBasket);
+
 }
 // et ajoute un
 function addToBasket(data) {
