@@ -1,11 +1,12 @@
+
 const checkoutForm = document.getElementById("checkoutForm");
 const formElements = checkoutForm.querySelectorAll("input");
-const submitButton = document.getElementById("submitButton");
 const formData = {};
 
+const submitButton = document.getElementById("submitButton");
 submitButton.addEventListener("click", (e) => {
+    removeBasket(currentBasket);
     alert("Your order has been successfully submitted!");
-    localStorage.removeItem("BASKET");
 
 })
 

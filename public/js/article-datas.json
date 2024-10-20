@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "cat": "Living Room",
+        "cat": "Living",
         "item": "Double Chair",
         "price": "550",
         "priceRed": "499",
@@ -11,12 +11,12 @@
     },
     {
         "id": 2,
-        "cat": "Living Room",
-        "item": "Couple Sofa",
-        "price": "1100",
-        "priceRed": "699",
-        "img": "images/products/product2.jpg",
-        "href": "product2.html",
+        "cat": "Kitchen",
+        "item": "Dining Table",
+        "price": "600",
+        "priceRed": "499",
+        "img": "images/products/product5.jpg",
+        "href": "product5.html",
         "amount": 50
     },
     {
@@ -41,17 +41,17 @@
     },
     {
         "id": 5,
-        "cat": "Kitchen",
-        "item": "Dining Table",
-        "price": "600",
-        "priceRed": "499",
-        "img": "images/products/product5.jpg",
-        "href": "product5.html",
+        "cat": "Living",
+        "item": "Couple Sofa",
+        "price": "1100",
+        "priceRed": "699",
+        "img": "images/products/product2.jpg",
+        "href": "product2.html",
         "amount": 50
     },
     {
         "id": 6,
-        "cat": "Living Room",
+        "cat": "Living",
         "item": "Deluxe Recliner",
         "price": "450",
         "priceRed": "349",
@@ -61,7 +61,7 @@
     },
     {
         "id": 7,
-        "cat": "Garden",
+        "cat": "Outdoor",
         "item": "Recliner Set",
         "price": "450",
         "priceRed": "399",
@@ -71,7 +71,7 @@
     },
     {
         "id": 8,
-        "cat": "Living Room",
+        "cat": "Living",
         "item": "Chair",
         "price": "299",
         "priceRed": "199",
@@ -81,7 +81,7 @@
     },
     {
         "id": 9,
-        "cat": "Living Room",
+        "cat": "Living",
         "item": "Stylish Chair",
         "price": "349",
         "priceRed": "299",
@@ -91,7 +91,7 @@
     },
     {
         "id": 10,
-        "cat": "Living Room",
+        "cat": "Living",
         "item": "Comfy Chair",
         "price": "300",
         "priceRed": "249",
