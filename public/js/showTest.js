@@ -1,5 +1,6 @@
-const changeTestSetting = document.getElementById("changeTestSetting");
-const currentTestSetting = document.getElementById("currentTestSetting");
+// un bouton pour basculer tests et un endroit pour montrer le setting courant
+const changeTestSetting = document.getElementById("changeTestSetting"),
+      currentTestSetting = document.getElementById("currentTestSetting");
 
 let showTests = JSON.parse(localStorage.getItem("TESTS"));
 if (showTests === undefined || showTests === null) {
@@ -10,7 +11,6 @@ if (showTests === undefined || showTests === null) {
 currentTestSetting.textContent = showTests;
 changeTestSetting.addEventListener("click", (e) => {
     showTests = !showTests;
-    console.log(showTests);
     localStorage.setItem("TESTS", JSON.stringify(showTests));
     currentTestSetting.textContent = showTests;
 })
