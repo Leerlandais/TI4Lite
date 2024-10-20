@@ -2,8 +2,7 @@
 const   currentBasket = JSON.parse(localStorage.getItem('BASKET')),
     checkoutGrid = document.getElementById("checkout_grid");
 function createUniqueBasket(datas){
-    const   currentBasket = JSON.parse(localStorage.getItem('BASKET')),
-        checkoutGrid = document.getElementById("checkout_grid");
+    const   currentBasket = JSON.parse(localStorage.getItem('BASKET'));
 
     showTests ? console.log("Current Basket (array expected) : ",currentBasket) : null;
     const occurrences = currentBasket.reduce((item, currentItem) => {
@@ -20,6 +19,7 @@ function createUniqueBasket(datas){
         };
     });
     showTests ? console.log("Recreated basket using occurrences instead of repetition (identical or reduced sized array expected) : ", uniqueBasket): null;
+    createBasketList(uniqueBasket);
 }
 
 function removeBasketList() {
@@ -42,7 +42,7 @@ function createBasketList (datas) {
         divExt.classList.add("flex", "justify-between", "items-center");
         const divTitle = document.createElement("div");
         divTitle.innerHTML = `<div>
-                        <h5 class="text-gray-800 font-medium w-14">${data.item} x ${data.item} </h5>
+                        <h5 class="text-gray-800 font-medium w-14">${data.item} x ${data.occurs} </h5>
                     </div>`;
         divExt.appendChild(divTitle);
 
@@ -99,5 +99,4 @@ function createTotalPrice(data) {
 
 }
 
-
-createBasketList(currentBasket);
+createUniqueBasket(currentBasket);

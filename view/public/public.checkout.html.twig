@@ -42,47 +42,52 @@
 
         </div>
 
-        <div class="col-span-4 border border-gray-200 p-4 rounded">
-            <h4 class="text-gray-800 text-lg mb-4 font-medium uppercase">order summary</h4>
+        <div class="col-span-4 border border-gray-200 p-4 rounded w-max">
+            <div class="overflow-x-auto">
+                    <h2 class="text-2xl border border-gray-300 text-center py-2">Order Summary</h2>
+                <table class="min-w-full bg-white shadow-md rounded-xl">
+                    <thead>
+                    <tr class="bg-blue-gray-100 text-gray-700">
+                        <th class="py-3 mx-3 px-8 text-center">Item</th>
+                        <th class="py-3 mx-3 px-8 text-center">Price</th>
+                        <th class="py-3 mx-3 px-8 text-center">Quantity</th>
+                        <th class="py-3 mx-3 px-8 text-center">Total</th>
+                        <th class="py-3 mx-3 px-8 text-center">-</th>
+                        <th class="py-3 mx-3 px-8 text-center">x</th>
+                        <th class="py-3 mx-3 px-8 text-center">+</th>
+                    </tr>
+                    </thead>
+                    <tbody class="text-blue-gray-900" id="table_grid">
 
-            <div class="space-y-2" id="checkout_grid">
-                <div class="flex justify-between">
-                    <div>
-                        <h5 class="text-gray-800 font-medium">Italian shape sofa</h5>
-                        <p class="text-sm text-gray-600">Size: M</p>
-                    </div>
-                    <p class="text-gray-600">
-                        x3
-                    </p>
-                    <p class="text-gray-800 font-medium">$320</p>
-                </div>
-                <div class="flex justify-between">
-                    <div>
-                        <h5 class="text-gray-800 font-medium">Italian shape sofa</h5>
-                        <p class="text-sm text-gray-600">Size: M</p>
-                    </div>
-                    <p class="text-gray-600">
-                        x3
-                    </p>
-                    <p class="text-gray-800 font-medium">$320</p>
-                </div>
+                    <tr class="border-b border-blue-gray-200 text-center">
+                        <td class="py-3 px-4 text-center">Chair</td>
+                        <td class="py-3 px-4 text-center">$50.25</td>
+                        <td class="py-3 px-4 text-center">4</td>
+                        <td class="py-3 px-4 text-center">$505</td>
+                        <td class="py-3 px-4 text-center">
+                            <button><img src="/public/images/icons/arrow-down.svg" alt="-" class="h-6 h-6"></button>
+                        </td>
+                        <td class="py-3 px-4">
+                            <button><img src="/public/images/icons/removeItem.svg" alt="X" class="h-6 h-6"></button>
+                        </td>
+                        <td class="py-3 px-4">
+                            <button><img src="/public/images/icons/arrow-up.svg" alt="+" class="h-6 h-6"></button>
+                        </td>
+                    </tr>
 
+                    <!-- Add more rows as needed -->
+                    <tr class="border-b border-blue-gray-200">
+                        <td class="py-3 px-4 font-medium" colspan="3">Total Wallet Value</td>
+
+                        <td class="py-3 px-4 font-medium text-center" colspan="4">$22525.00</td>
+
+                    </tr>
+                    </tbody>
+                </table>
             </div>
-
-
-            <div class="flex items-center mb-4 mt-2">
-                <input type="checkbox" name="aggrement" id="aggrement"
-                       class="text-primary focus:ring-0 rounded-sm cursor-pointer w-3 h-3">
-                <label for="aggrement" class="text-gray-600 ml-3 cursor-pointer text-sm">I agree to the <a href="#"
-                                                                                                           class="text-primary">terms & conditions</a></label>
-            </div>
-            <form action="./">
-            <button id="submitButton"
-               class="block w-full py-3 px-4 text-center text-white bg-primary border border-primary rounded-md hover:bg-transparent hover:text-primary transition font-medium">Place
-                order</button>
-            </form>
         </div>
     </div>
+
 
 {% endblock %}
 

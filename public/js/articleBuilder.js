@@ -82,7 +82,7 @@ function postArticlesByGrid(datas, whichGrid){
                                        bg-primary border border-primary rounded-b 
                                        hover:bg-transparent hover:text-primary transition"
                                 id="ITEM${data['id']}"
-                                onclick='addToBasket(${oneItemString}, true)'>
+                                onclick='addToBasket(${oneItemString})'>
                                 Add to cart
                                 </button>`
             divLink.appendChild(divBtn);
