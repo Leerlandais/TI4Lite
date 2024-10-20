@@ -45,14 +45,18 @@ function removeBasket(datas) {
 }
 
 // enleve un article du panier
-function removeFromBasket(data) {
+function removeFromBasket(datas, id) {
     showTests ? console.warn("RUNNING REMOVE FROM BASKET FUNCTION") : null;
-    showTests ? console.log(currentBasket) : null;
-    showTests ? console.log(data) : null;
+    showTests ? console.log(datas) : null;
+    showTests ? console.log(id) : null;
+    alert ("read");
+    const remItem = datas.findIndex(data => data.id === id);
+       let newBasket = datas.splice(remItem, 1);
 
-    currentBasket.splice(data, 1);
-    showTests ? console.log('Item removed (smaller array expected) : ',currentBasket) : null;
-    localStorage.setItem('BASKET', JSON.stringify(currentBasket));
+    showTests ? console.log("newBasket : ", newBasket) : null;
+    alert('read again');
+    localStorage.removeItem("BASKET");
+    localStorage.setItem('BASKET', JSON.stringify(newBasket));
     removeBasketList();
     createUniqueBasket();
 }

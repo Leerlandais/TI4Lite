@@ -2,10 +2,11 @@
 let currentBasket = getBasket(),
     tableGrid = document.getElementById("table_grid");
 
-console.log("THIS CUNT : ",currentBasket);
 function createUniqueBasket(datas){
-    const   currentBasket = datas;
-
+    let currentBasket = datas;
+    if(currentBasket === null || currentBasket === undefined) {
+        currentBasket = getBasket();
+    }
     showTests ? console.log("Current Basket (array expected) : ",currentBasket) : null;
     const occurrences = currentBasket.reduce((item, currentItem) => {
         const key = JSON.stringify(currentItem);
@@ -43,7 +44,7 @@ function createBasketList (datas) {
     if (datas === null || datas.length < 1) {
         const tr = document.createElement("tr");
         tr.classList.add("border-b", "border-blue-gray-200");
-        tr.innerHTML = `<td class="py-3 px-4 font-medium text-center" colspan="7"><a href="?route=home">Basket is Empty - <span class="text-green-600">Return to Shop</span></a></td`
+        tr.innerHTML = `<td class="py-3 px-4 font-medium text-center" colspan="7"><a href="?route=home">Basket is Empty</a></td`
         tableGrid.appendChild(tr);
         return;
     }
@@ -58,15 +59,11 @@ function createBasketList (datas) {
                         <td class="py-3 px-4 text-center">€${data.price}</td>
                         <td class="py-3 px-4 text-center">${data.occurs}</td>
                         <td class="py-3 px-4 text-center">€${fullPrice}</td>
-                        <td class="py-3 px-4 text-center">
-                            <button onclick="removeFromBasket(${data})"><img src="/public/images/icons/arrow-down.svg" alt="-" class="h-6 h-6"></button>
-                        </td>
+
                         <td class="py-3 px-4">
                             <button onclick="deleteFromBasket(${data.id})"><img src="/public/images/icons/removeItem.svg" alt="X" class="h-6 h-6"></button>
                         </td>
-                        <td class="py-3 px-4">
-                            <button onclick="removeFromBasket(${data})"><img src="/public/images/icons/arrow-up.svg" alt="+" class="h-6 h-6"></button>
-                        </td>`
+`
         showTests ? console.log("Price Table created (object expected) :", tr) : null;
     tableGrid.appendChild(tr);
     });
