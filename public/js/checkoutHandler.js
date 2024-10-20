@@ -63,7 +63,7 @@ function createBasketList (datas) {
                         <td class="py-3 px-4">
                             <button><img src="/public/images/icons/arrow-up.svg" alt="+" class="h-6 h-6"></button>
                         </td>`
-
+        showTests ? console.log("Price Table created (object expected) :", tr) : null;
     tableGrid.appendChild(tr);
     });
     createTotalPrice(datas);
@@ -72,26 +72,25 @@ function createBasketList (datas) {
 
 let finalPrice = 0;
 function createTotalPrice(datas) {
+    showTests ? console.warn("Calculating total price and creating Table") : null;
     datas.forEach((data) => {
         finalPrice += parseInt(data.price);
+        showTests ? console.log('Current total (int expected) : ',finalPrice): null;
         const trPrice = document.createElement("tr");
 
         if (document.querySelector(".tempRemove")) {
             const tempRemove =  document.querySelector(".tempRemove");
+            showTests ? console.log("Removing unnecessary element : ", tempRemove) : null;
             tableGrid.removeChild(tempRemove);
         }
         trPrice.classList.add("border-b", "border-blue-gray-200", "tempRemove");
         trPrice.innerHTML = `<td class="py-3 px-4 font-medium" colspan="3">Total Wallet Value</td>
                         <td class="py-3 px-8 font-medium text-left" colspan="4">€${finalPrice}</td>`
-
+        showTests ? console.log("Total Price Section created (object expected) :", trPrice) : null;
     tableGrid.appendChild(trPrice);
-
     });
 
-
-
-
-
+    showTests ? console.warn("Price Table Creation Complete") : null;
 }
 
 if (currentBasket) {
@@ -100,36 +99,3 @@ createUniqueBasket(currentBasket);
     createBasketList(null)
 }
 
-/*
- const divExt = document.createElement("div");
-        divExt.classList.add("flex", "justify-between", "items-center");
-        const divTitle = document.createElement("div");
-        divTitle.innerHTML = `<div>
-                        <h5 class="text-gray-800 font-medium w-14">${data.item} x ${data.occurs} </h5>
-                    </div>`;
-        divExt.appendChild(divTitle);
-
-        const choiceBtns = document.createElement("div");
-        choiceBtns.classList.add("flex", "justify-around", "items-center", "space-x-4");
-        const incItem = document.createElement("p");
-        incItem.classList.add("text-gray-600");
-        incItem.innerHTML = `<button onclick="removeFromBasket(${data.id})"><img src="images/icons/arrow-down.svg" alt="\/" class="h-6 w-6"></button>`
-        choiceBtns.appendChild(incItem);
-        const remItem = document.createElement("p");
-        remItem.classList.add("text-gray-600");
-        remItem.innerHTML = `<button onclick="deleteFromBasket(${data.id})"><img src="images/icons/removeItem.svg" alt="X" class="h-6 w-6"></button>`
-        choiceBtns.appendChild(remItem);
-        const decItem = document.createElement("p");
-        decItem.classList.add("text-gray-600");
-        decItem.innerHTML = `<button onclick="addToBasket(${data.id})"><img src="images/icons/arrow-up.svg" alt="/\" class="h-6 w-6"></button>`
-        choiceBtns.appendChild(decItem);
-
-        divExt.appendChild(choiceBtns);
-        const pricePara = document.createElement("p");
-        pricePara.classList.add("text-gray-800", "font-medium");
-        pricePara.textContent = "€" + data.price;
-        divExt.appendChild(pricePara);
-        showTests ? console.log("Created Div (object expected) : ", divExt) : null;
-        tableGrid.appendChild(divExt)
-    createTotalPrice(data);
- */

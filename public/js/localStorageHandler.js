@@ -32,9 +32,16 @@ function getBasket() {
 }
 
 // pour vider basket après l'achat
-function removeBasket() {
+function removeBasket(datas) {
         showTests ? console.warn("RUNNING REMOVE BASKET FUNCTION") : null;
-    localStorage.removeItem('BASKET');
+        localStorage.removeItem('BASKET');
+
+    datas.forEach((data) => {
+       let sold = JSON.parse(localStorage.getItem('ITEM'+data.id));
+       sold.sold += 1;
+       showTests ? console.log("Adjusting sold amount for : ", data.item) : null;
+       localStorage.setItem('ITEM'+data.id+'', JSON.stringify(sold));
+    });
 }
 
 // enleve un article du panier
