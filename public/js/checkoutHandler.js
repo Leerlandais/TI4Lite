@@ -1,6 +1,6 @@
 
 const   currentBasket = JSON.parse(localStorage.getItem('BASKET')),
-    checkoutGrid = document.getElementById("checkout_grid");
+    tableGrid = document.getElementById("table_grid");
 function createUniqueBasket(datas){
     const   currentBasket = JSON.parse(localStorage.getItem('BASKET'));
 
@@ -25,9 +25,9 @@ function createUniqueBasket(datas){
 function removeBasketList() {
     showTests ? console.warn("Removing existing basket elements") : null;
     let i = 1;
-    while (checkoutGrid.firstChild) {
+    while (tableGrid.firstChild) {
         showTests ? console.log("removing element : "+i) : null;
-        checkoutGrid.removeChild(checkoutGrid.firstChild);
+        tableGrid.removeChild(tableGrid.firstChild);
         i++;
     }
 }
@@ -36,9 +36,55 @@ removeBasketList();
 function createBasketList (datas) {
     showTests ? console.warn("Creating Basket") : null;
     showTests ? console.log('Received datas (array expected) : ',datas): null;
-
+    if (datas === null) {
+        const tr = document.createElement("tr");
+        tr.classList.add("border-b", "border-blue-gray-200");
+        tr.innerHTML = `<td class="py-3 px-4 font-medium text-center" colspan="7"><a href="?route=home">Basket is Empty - <span class="text-green-600">Return to Shop</span></a></td`
+        tableGrid.appendChild(tr);
+        return false;
+    }
     datas.forEach((data) => {
-        const divExt = document.createElement("div");
+
+    });
+}
+
+
+let finalPrice = 0;
+function createTotalPrice(data) {
+        finalPrice += parseInt(data.price);
+        showTests ? console.log("adjusting total price (int expected) :", finalPrice): null;
+        const totPrice = document.createElement("div");
+        totPrice.classList.add("flex", "justify-between", "border-b", "border-gray-200",
+                               "mt-1", "text-gray-800", "font-medium", "py-3", "uppercase",
+                               "tempRemove");
+
+        if (document.querySelector(".tempRemove")) {
+            showTests ? console.log("Removing surplus subtotal div"): null;
+            const tempRemove =  document.querySelector(".tempRemove");
+            tableGrid.removeChild(tempRemove);
+        }
+
+        const p1 = document.createElement("p");
+        p1.textContent = "Subtotal";
+        totPrice.append(p1);
+        const p2 = document.createElement("p");
+        p2.textContent = `€${finalPrice}`;
+        showTests ? console.log("Creating final price display (2xobject expected) : ",p1, p2): null;
+        totPrice.append(p2);
+        tableGrid.appendChild(totPrice);
+        showTests ? console.log("Created Div (object expected) : ", totPrice): null;
+
+
+}
+
+if (currentBasket) {
+createUniqueBasket(currentBasket);
+}else {
+    createBasketList(null)
+}
+
+/*
+ const divExt = document.createElement("div");
         divExt.classList.add("flex", "justify-between", "items-center");
         const divTitle = document.createElement("div");
         divTitle.innerHTML = `<div>
@@ -67,36 +113,6 @@ function createBasketList (datas) {
         pricePara.textContent = "€" + data.price;
         divExt.appendChild(pricePara);
         showTests ? console.log("Created Div (object expected) : ", divExt) : null;
-        checkoutGrid.appendChild(divExt)
+        tableGrid.appendChild(divExt)
     createTotalPrice(data);
-    });
-}
-let finalPrice = 0;
-function createTotalPrice(data) {
-        finalPrice += parseInt(data.price);
-        showTests ? console.log("adjusting total price (int expected) :", finalPrice): null;
-        const totPrice = document.createElement("div");
-        totPrice.classList.add("flex", "justify-between", "border-b", "border-gray-200",
-                               "mt-1", "text-gray-800", "font-medium", "py-3", "uppercase",
-                               "tempRemove");
-
-        if (document.querySelector(".tempRemove")) {
-            showTests ? console.log("Removing surplus subtotal div"): null;
-            const tempRemove =  document.querySelector(".tempRemove");
-            checkoutGrid.removeChild(tempRemove);
-        }
-
-        const p1 = document.createElement("p");
-        p1.textContent = "Subtotal";
-        totPrice.append(p1);
-        const p2 = document.createElement("p");
-        p2.textContent = `€${finalPrice}`;
-        showTests ? console.log("Creating final price display (2xobject expected) : ",p1, p2): null;
-        totPrice.append(p2);
-        checkoutGrid.appendChild(totPrice);
-        showTests ? console.log("Created Div (object expected) : ", totPrice): null;
-
-
-}
-
-createUniqueBasket(currentBasket);
+ */
