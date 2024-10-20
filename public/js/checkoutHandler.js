@@ -41,38 +41,55 @@ function createBasketList (datas) {
         tr.classList.add("border-b", "border-blue-gray-200");
         tr.innerHTML = `<td class="py-3 px-4 font-medium text-center" colspan="7"><a href="?route=home">Basket is Empty - <span class="text-green-600">Return to Shop</span></a></td`
         tableGrid.appendChild(tr);
-        return false;
+        return;
     }
+    let finalPrice = 0;
     datas.forEach((data) => {
+        finalPrice += parseInt(data.price);
+        let fullPrice = parseInt(data.price) * parseInt(data.occurs);
+        console.log("price : ", fullPrice);
+        const tr = document.createElement("tr");
+        tr.classList.add("border-b", "border-blue-gray-200", "text-center");
+        tr.innerHTML = `<td class="py-3 px-4 text-center">${data.item}</td>
+                        <td class="py-3 px-4 text-center">€${data.price}</td>
+                        <td class="py-3 px-4 text-center">${data.occurs}</td>
+                        <td class="py-3 px-4 text-center">€${fullPrice}</td>
+                        <td class="py-3 px-4 text-center">
+                            <button><img src="/public/images/icons/arrow-down.svg" alt="-" class="h-6 h-6"></button>
+                        </td>
+                        <td class="py-3 px-4">
+                            <button><img src="/public/images/icons/removeItem.svg" alt="X" class="h-6 h-6"></button>
+                        </td>
+                        <td class="py-3 px-4">
+                            <button><img src="/public/images/icons/arrow-up.svg" alt="+" class="h-6 h-6"></button>
+                        </td>`
 
+    tableGrid.appendChild(tr);
     });
+    createTotalPrice(datas);
 }
 
 
 let finalPrice = 0;
-function createTotalPrice(data) {
+function createTotalPrice(datas) {
+    datas.forEach((data) => {
         finalPrice += parseInt(data.price);
-        showTests ? console.log("adjusting total price (int expected) :", finalPrice): null;
-        const totPrice = document.createElement("div");
-        totPrice.classList.add("flex", "justify-between", "border-b", "border-gray-200",
-                               "mt-1", "text-gray-800", "font-medium", "py-3", "uppercase",
-                               "tempRemove");
+        const trPrice = document.createElement("tr");
 
         if (document.querySelector(".tempRemove")) {
-            showTests ? console.log("Removing surplus subtotal div"): null;
             const tempRemove =  document.querySelector(".tempRemove");
             tableGrid.removeChild(tempRemove);
         }
+        trPrice.classList.add("border-b", "border-blue-gray-200", "tempRemove");
+        trPrice.innerHTML = `<td class="py-3 px-4 font-medium" colspan="3">Total Wallet Value</td>
+                        <td class="py-3 px-8 font-medium text-left" colspan="4">€${finalPrice}</td>`
 
-        const p1 = document.createElement("p");
-        p1.textContent = "Subtotal";
-        totPrice.append(p1);
-        const p2 = document.createElement("p");
-        p2.textContent = `€${finalPrice}`;
-        showTests ? console.log("Creating final price display (2xobject expected) : ",p1, p2): null;
-        totPrice.append(p2);
-        tableGrid.appendChild(totPrice);
-        showTests ? console.log("Created Div (object expected) : ", totPrice): null;
+    tableGrid.appendChild(trPrice);
+
+    });
+
+
+
 
 
 }
